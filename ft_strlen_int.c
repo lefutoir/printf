@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_d.c                                        :+:      :+:    :+:   */
+/*   ft_strlen_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 13:48:53 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/14 14:28:58 by aulukutu         ###   ########.fr       */
+/*   Created: 2023/01/18 13:44:39 by aulukutu          #+#    #+#             */
+/*   Updated: 2023/03/14 14:30:21 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int	ft_flag_d(int c)
+int	ft_strlen_int(int nbr)
 {
-	int	len;
+	int	i;
 
-	len = ft_putnbr(c);
-	return (len);
+	i = 0;
+	if (nbr == 0)
+		return (i + 1);
+	while (nbr != 0)
+	{
+		i++;
+		nbr = nbr / 10;
+	}
+	return (i);
 }

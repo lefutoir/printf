@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_d.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 13:48:53 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/14 14:28:58 by aulukutu         ###   ########.fr       */
+/*   Created: 2023/01/18 13:43:03 by aulukutu          #+#    #+#             */
+/*   Updated: 2023/03/14 14:30:24 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_flag_d(int c)
+int	ft_putnbr(int n)
 {
-	int	len;
+	int		i;
 
-	len = ft_putnbr(c);
-	return (len);
+	i = 0;
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648");
+		i++;
+	}
+	else
+	{
+		if (n < 0)
+		{
+			n = n * -1;
+			write (1, "-", 1);
+			i++;
+		}
+		if (n > 9)
+			ft_putnbr(n / 10);
+		ft_putchar((n % 10 + '0'));
+	}
+	i += ft_strlen_int(n);
+	return (i);
 }

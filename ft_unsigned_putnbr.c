@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_unsigned_putnbr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 11:40:42 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/14 11:41:37 by aulukutu         ###   ########.fr       */
+/*   Created: 2023/01/18 13:47:22 by aulukutu          #+#    #+#             */
+/*   Updated: 2023/03/14 14:28:58 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_itoa(int n)
+static int	ft_strlen_unsigned_int(unsigned int nbr)
 {
-    char	*str;
-    int		i;
-    int		neg;
+	int	i;
 
-    i = 0;
-    neg = 0;
-    if (n < 0)
-    {
-        neg = 1;
-        n = -n;
-    }
-    str = (char *)malloc(sizeof(char) * 12);
-    if (!str)
-        return (NULL);
-    while (n > 9)
-    {
-        str[i++] = n % 10 + '0';
-        n /= 10;
-    }
-    str[i++] = n + '0';
-    if (neg)
-        str[i++] = '-';
-    str[i] = '\0';
-    return (str);
+	i = 0;
+	while (nbr != 0)
+	{
+		i++;
+		nbr = nbr / 10;
+	}
+	return (i);
+}
+
+int	ft_unsigned_putnbr(unsigned int nbr)
+{
+	int	i;
+
+	i = 0;
+	if (nbr > 9)
+		ft_unsigned_putnbr(nbr / 10);
+	ft_putchar((nbr % 10 + '0'));
+	i += ft_strlen_unsigned_int(nbr);
+	return (i);
 }

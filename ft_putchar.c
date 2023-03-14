@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_d.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 13:48:53 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/14 14:28:58 by aulukutu         ###   ########.fr       */
+/*   Created: 2023/01/18 13:41:18 by aulukutu          #+#    #+#             */
+/*   Updated: 2023/03/14 14:30:26 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_flag_d(int c)
+void	ft_putchar(char c)
 {
-	int	len;
-
-	len = ft_putnbr(c);
-	return (len);
+	write (1, &c, 1);
 }
