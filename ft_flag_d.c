@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_flag_d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 12:54:42 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/14 11:41:23 by aulukutu         ###   ########.fr       */
+/*   Created: 2023/03/14 11:30:16 by aulukutu          #+#    #+#             */
+/*   Updated: 2023/03/14 11:39:42 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdarg.h>
+int	ft_flag_d(int n)
+{
+	int		i;
+	char	*str;
 
-int		ft_printf(const char *s, ...);
-int		ft_flag_d(int n);
-char	*ft_itoa(int n);
-
-#endif
+	i = 	0;
+	str = 	ft_itoa(n);
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}

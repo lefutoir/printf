@@ -6,39 +6,59 @@
 /*   By: aulukutu <aulukutu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:53:16 by aulukutu          #+#    #+#             */
-/*   Updated: 2023/03/13 14:26:44 by aulukutu         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:51:14 by aulukutu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_check(va_list ap, char check)
+int	ft_check(va_list inputs, char check)
 {
-	int	len;
+	int	result;
 
 	if (check == 'd' || check == 'i')
-		len = ft_flag_d(va_arg(ap, int));
+		result = ft_flag_d(va_arg(inputs, int));
 	else if (check == 'c')
-		len = ft_flag_c(va_arg(ap, int));
-	return (len);
+		result = 0;
+	return (result);
 }
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *format, ...)
 {
+	va_list	inputs;
 	int		i;
-	va_list	ap;
-	int		len;
+	int		result;
 
+	va_start(inputs, format);
 	i = -1;
-	va_start(ap, s);
-	len = 0;
-	while (s[++i])
+	result = 0;
+	while (format[++i])
 	{
-		if (s[i] == '%')
-			len += ft_check(ap, s[++i]);
+		if (format[i] == '%')
+			result += ft_check(inputs, format[++i]);
 		else
-			len += write(1, &s[i], 1);
+			result += write(1, &format[i], 1);
 	}
-	va_end(ap);
-	return (len);
+	va_end(inputs);
+	return (result);
+}
+
+// int	main(int argc, char **argv)
+// {
+// 	(void)argc;
+// 	(void)argv;
+// 	printf("%s\n", "------FT_PRINTF------");
+// 	printf("\n%d", ft_printf(" %c %c %c ", 'w', 'a', 'b'));
+// 	printf("\n%s\n", "------PRINTF------");
+// 	printf("\n%d", printf(" %c %c %c ", 'w', 'a', 'b'));
+// }
+
+int	main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	printf("%s\n", "------FT_PRINTF------");
+	printf("\n%d", ft_printf("123aA&@$"));
+	printf("\n%s\n", "------PRINTF------");
+	printf("\n%d", printf("123a56"));
 }
